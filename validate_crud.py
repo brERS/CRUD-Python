@@ -20,13 +20,7 @@ if connection_rds.is_connected():
 
     # Example read
     # Inform params to read
-    read = '''
-        SELECT
-            *
-        FROM
-            crudpython
-        ;
-    '''
+    read = "SELECT * FROM crudpython;"
 
     # Run select
     answer_read = crud.read_db(connection_rds, read)

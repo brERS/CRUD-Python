@@ -11,7 +11,7 @@ def get_file_password():
 
     # Create subprocess to read file and get password
     answer = subprocess.run(
-        ['grep', '-Ri', 'password=', 'my.cnf'], stdout=subprocess.PIPE)
+        ['grep', '-Ri', 'password=', '/etc/mysql/my.cnf'], stdout=subprocess.PIPE)
     # Store output
     answer = answer.stdout
     # Set decode charSet
@@ -32,11 +32,15 @@ def create_db_connection_rds():
     try:
         
         params = {
-            'host':'your_host',
-            'user':'your_user',
-            'port':'your_port',
-            'database':'your_db',
-            'password': get_file_password(),
+            'host':'127.0.0.1',
+            'user':'crudteste',
+            'port':'3306',
+            'database':'teste_crud',
+            'password':'passcrudteste',
+            'auth_plugin':'mysql_native_password' 
+            
+            # caso tenha configurado o user e pass no arquivo my.cnf do mysql pode usar a opção abaixo
+            # 'password': get_file_password(),
         }
 
         answer = mysql.connector.connect(**params)
