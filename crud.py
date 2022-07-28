@@ -128,10 +128,12 @@ def update_db(connection, table, set, where):
 
     # Validating not to execute without the parameter where
     if not where:
-        answer = 'Oh no, running delete without where?!'
+        answer = 'Oh no, running update without where?!'
 
         # Save the log to debug later
         log.save_log(str(answer), 'update_db')
+
+        return answer
 
     connection.autocommit = False
     cursor = connection.cursor()
@@ -192,6 +194,8 @@ def delete_db(connection, table, where):
 
         # Save the log to debug later
         log.save_log(str(answer), 'delete_db')
+
+        return answer
 
     connection.autocommit = False
     cursor = connection.cursor()
