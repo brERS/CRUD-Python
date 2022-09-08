@@ -146,10 +146,10 @@ def update_db(connection, table, set, where):
     for i in set:
         params_set += str("`" + str(i) + "`='" + str(set[i]) + "', ")
     for i in where:
-        params_where += str("`" + str(i) + "`='" + str(where[i]) + "', ")
+        params_where += str("`" + str(i) + "`='" + str(where[i]) + "' AND ")
 
     # Formatting update variable
-    update = f'UPDATE {table} SET {params_set[:-2]} WHERE {params_where[:-2]};'
+    update = f'UPDATE {table} SET {params_set[:-2]} WHERE {params_where[:-4]};'
 
     try:
         # Executing update
@@ -204,10 +204,10 @@ def delete_db(connection, table, where):
     params_where = ''
 
     for i in where:
-        params_where += str("`" + str(i) + "`='" + str(where[i]) + "', ")
+        params_where += str("`" + str(i) + "`='" + str(where[i]) + "' AND ")
 
     # Formatting update variable
-    delete = f'DELETE FROM {table} WHERE {params_where[:-2]};'
+    delete = f'DELETE FROM {table} WHERE {params_where[:-4]};'
 
     try:
         # Executing update
